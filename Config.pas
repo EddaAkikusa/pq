@@ -4,8 +4,8 @@ unit Config;
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ComCtrls;
+  SysUtils, Variants, Classes, Graphics, Controls, Forms, Dialogs, StdCtrls,
+  ComCtrls;
 
 type
   TK = class(TForm)
@@ -52,6 +52,6 @@ var
 
 implementation
 
-{$R *.dfm}
+{$R *.lfm}
 
 end.

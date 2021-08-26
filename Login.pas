@@ -37,7 +37,7 @@ implementation
 
 uses ShellAPI, Main, NewGuy, SelServ;
 
-{$R *.dfm}
+{$R *.lfm}
 
 procedure TLoginForm.Label2Click(Sender: TObject);
 begin

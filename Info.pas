@@ -20,7 +20,7 @@ var
 
 implementation
 
-{$R *.dfm}
+{$R *.lfm}
 
 procedure TForm4.Go(url: String);
 begin

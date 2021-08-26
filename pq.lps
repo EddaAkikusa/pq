@@ -20,8 +20,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="35"/>
-        <CursorPos X="30" Y="33"/>
+        <CursorPos X="37" Y="35"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -29,14 +28,11 @@
       <Unit>
         <Filename Value="Config.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="K"/>
         <HasResources Value="True"/>
+        <ComponentName Value="K"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="22"/>
-        <CursorPos X="3" Y="8"/>
+        <EditorIndex Value="-1"/>
         <UsageCount Value="20"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="Main.pas"/>
@@ -51,8 +47,8 @@
       <Unit>
         <Filename Value="NewGuy.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="NewGuyForm"/>
         <HasResources Value="True"/>
+        <ComponentName Value="NewGuyForm"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
@@ -127,15 +123,8 @@
         <CursorPos X="8" Y="201"/>
         <UsageCount Value="10"/>
       </Unit>
-      <Unit>
-        <Filename Value="/Applications/Lazarus/lcl/comctrls.pp"/>
-        <UnitName Value="ComCtrls"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="58"/>
-        <UsageCount Value="10"/>
-      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="5">
+    <JumpHistory HistoryIndex="3">
       <Position>
         <Filename Value="Front.pas"/>
       </Position>
@@ -150,14 +139,6 @@
       <Position>
         <Filename Value="Front.pas"/>
         <Caret Line="40" Column="53"/>
-      </Position>
-      <Position>
-        <Filename Value="Config.pas"/>
-        <Caret Line="8" Column="3"/>
-      </Position>
-      <Position>
-        <Filename Value="Front.pas"/>
-        <Caret Line="35" Column="37" TopLine="35"/>
       </Position>
     </JumpHistory>
     <RunParams>

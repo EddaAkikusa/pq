@@ -1,0 +1,4 @@
+pq.app/*
+backup/*
+lib/*
+.DS_Store

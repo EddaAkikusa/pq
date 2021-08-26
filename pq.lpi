@@ -42,23 +42,23 @@
       <Unit>
         <Filename Value="Config.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="K"/>
         <HasResources Value="True"/>
+        <ComponentName Value="K"/>
         <ResourceBaseClass Value="Form"/>
       </Unit>
       <Unit>
         <Filename Value="Main.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <ComponentName Value="MainForm"/>
       </Unit>
       <Unit>
         <Filename Value="NewGuy.pas"/>
         <IsPartOfProject Value="True"/>
-        <ComponentName Value="NewGuyForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <ComponentName Value="NewGuyForm"/>
       </Unit>
       <Unit>
         <Filename Value="SelServ.pas"/>

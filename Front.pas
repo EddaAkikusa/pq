@@ -4,10 +4,13 @@ unit Front;
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ExtCtrls;
+  SysUtils, Variants, Classes, Graphics, Controls, Forms, Dialogs, StdCtrls,
+  ExtCtrls, LCLIntf;
 
 type
+
+  { TFrontForm }
+
   TFrontForm = class(TForm)
     Panel1: TPanel;
     Button1: TButton;
@@ -21,6 +24,7 @@ type
     Label3: TLabel;
     HomeLink: TLabel;
     Label1: TLabel;
+    procedure FormCreate(Sender: TObject);
     procedure HomeLinkClick(Sender: TObject);
     procedure LogoClick(Sender: TObject);
   end;
@@ -30,18 +34,23 @@ var
 
 implementation
 
-uses ShellAPI, Main, Info;
+uses Main, Info;
 
-{$R *.dfm}
+{$R *.lfm}
 
 procedure TFrontForm.HomeLinkClick(Sender: TObject);
 begin
-  ShellExecute(GetDesktopWindow(), 'open', 'http://progressquest.com/', nil, '', SW_SHOW);
+  OpenURL('http://progressquest.com/');
+end;
+
+procedure TFrontForm.FormCreate(Sender: TObject);
+begin
+
 end;
 
 procedure TFrontForm.LogoClick(Sender: TObject);
 begin
-  ShellExecute(GetDesktopWindow(), 'open', 'http://progressquest.com/', nil, '', SW_SHOW);
+  OpenURL('http://progressquest.com/');
 end;
 
 end.

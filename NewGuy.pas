@@ -64,7 +64,7 @@ implementation
 
 uses Main, SelServ, StrUtils, Web, Config;
 
-{$R *.dfm}
+{$R *.lfm}
 
 function UrlEncode(s: string): string;
 begin

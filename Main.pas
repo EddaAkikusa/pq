@@ -7,18 +7,18 @@ unit Main;
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, ComCtrls, StdCtrls, ExtCtrls, Buttons, ImgList, Menus, ShellAPI;
+  SysUtils, Variants, Classes, Graphics, Controls, Forms, Dialogs, ComCtrls,
+  StdCtrls, ExtCtrls, Buttons, ImgList, Menus;
 
 const
   // revs:
+  // 6: pq 6.3-fp
   // 5: pq 6.3
   // 4: pq 6.2
   // 3: pq 6.1
   // 2: pq 6.0
   // 1: pq 6.0, some early release I guess; don't remember
-  RevString = '&rev=5';
-  wmIconTray = WM_USER + Ord('t');
+  RevString = '&rev=6';
   kFileExt = '.pq3';
 
 type
@@ -92,12 +92,10 @@ type
     procedure Brag(trigger: String);
     procedure TriggerAutosizes;
     function GameSaveName: String;
-    procedure OnTrayMessage(var Msg: TMessage); message wmIconTray;
-    procedure OnSysCommand(var Msg : TWMSysCommand); message WM_SYSCOMMAND;
     procedure Guildify;
     procedure ClearAllSelections;
-    procedure OnQueryEndSession(var Msg : TMessage); message WM_QUERYENDSESSION;
-    procedure OnEndSession(var Msg : TMessage); message WM_ENDSESSION;
+    procedure OnQueryEndSession(var cancel: Boolean);
+    procedure OnEndSession(sender: TObject);
     procedure RestoreIt;
     function AuthenticateUrl(url: String): String;
     {$IFDEF LOGGING}
@@ -109,14 +107,12 @@ type
     function NamedMonster(level: Integer): String;
     function ImpressiveGuy: String;
   public
-    FTrayIcon: TNotifyIconData;
     FReportSave: Boolean;
     FLogEvents: Boolean;
     FMakeBackups: Boolean;
     FMinToTray: Boolean;
     FExportSheets: Boolean;
     FSaveFileName: String;
-    procedure MinimizeIt;
     procedure LoadGame(name: String);
     function SaveGame: Boolean;
     procedure Put(list: TListView; key: String; value: String); overload;
@@ -156,109 +152,10 @@ procedure Navigate(url: String);
 
 implementation
 
-uses Web, StrUtils, NewGuy, Math, Config, Front, zlibex, SelServ, Login,
+uses Web, StrUtils, NewGuy, Math, Config, Front, Zlib, SelServ, Login,
   mmsystem, Registry, ShlObj;
 
-{$R *.dfm}
-
-// Returns '' if not there, which is lame, but okay for my purposes
-function RegRead(root: HKEY; path, name: String): String;
-var
-  Reg: TRegistry;
-begin
-  Reg := TRegistry.Create;
-  try
-    Reg.RootKey := root;
-    if Reg.OpenKey(path, false) then
-      Result := Reg.ReadString(name);
-    Reg.CloseKey;
-  finally
-    Reg.Free;
-  end;
-end;
-
-procedure RegWrite(root: HKEY; path, name, value: String);
-var
-  Reg: TRegistry;
-begin
-  Reg := TRegistry.Create;
-  try
-    Reg.RootKey := root;
-    Reg.OpenKey(path, true);
-    Reg.WriteString(name, value);
-    Reg.CloseKey;
-  finally
-    Reg.Free;
-  end;
-end;
-
-procedure MakeFileAssociations;
-const
-  kPQFileType = 'ProgressQuest.GameSave';
-var
-  kOpenCommand: String;
-begin
-  kOpenCommand := '"' + Application.ExeName + '" "%1"';
-  try
-    RegWrite(HKEY_CLASSES_ROOT, kFileExt,'', kPQFileType);
-    RegWrite(HKEY_CLASSES_ROOT, kPQFileType, '', 'Progresss Quest saved game');
-    RegWrite(HKEY_CLASSES_ROOT, kPQFileType + '\DefaultIcon', '', Application.ExeName + ',0');
-    RegWrite(HKEY_CLASSES_ROOT, kPQFileType + '\Shell\Open', '', '&Open');
-    if RegRead(HKEY_CLASSES_ROOT, kPQFileType + '\Shell\Open\Command', '') <> kOpenCommand then begin
-      RegWrite(HKEY_CLASSES_ROOT, kPQFileType + '\Shell\Open\Command', '', kOpenCommand);
-      // Notify Windows Explorer to realize we added this. In case this is slow
-      // I don't do this unless I'm sure this one has changed.
-      SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, nil, nil);
-    end;
-  except
-    on Exception do begin
-      // Don't care
-    end;
-  end;
-end;
-
-procedure TMainForm.MinimizeIt;
-begin
-  if not FMinToTray then Exit;
-  with FTrayIcon do
-  begin
-    cbSize := SizeOf(FTrayIcon);
-    Wnd := Handle;
-    uID := 0;
-    uFlags := NIF_MESSAGE + NIF_ICON + NIF_TIP;
-    uCallbackMessage := wmIconTray;
-    hIcon := Application.Icon.Handle;
-    StrPLCopy(szTip, Caption, 63);
-  end;
-  Application.Minimize;
-  ShowWindow(Application.Handle, SW_HIDE);
-  Shell_NotifyIcon(NIM_ADD,@FTrayIcon);
-end;
-
-procedure TMainForm.OnSysCommand(var Msg: TWMSysCommand);
-begin
-  if (Msg.CmdType = SC_MINIMIZE) and FMinToTray then
-    MinimizeIt();
-  inherited;
-end;
-
-procedure TMainForm.RestoreIt;
-begin
-  ShowWindow(Application.Handle, SW_SHOW);
-  Application.Restore;
-  Shell_NotifyIcon(NIM_DELETE, @MainForm.FTrayIcon);
-end;
-
-procedure TMainForm.OnTrayMessage(var Msg: TMessage);
-begin
-  case Msg.lParam of
-    WM_LBUTTONDOWN, WM_RBUTTONDOWN:
-      RestoreIt;
-
-    WM_LBUTTONDBLCLK, WM_RBUTTONDBLCLK:
-      RestoreIt;
-  end;
-end;
+{$R *.lfm}
 
 procedure StartTimer;
 begin
@@ -380,7 +277,7 @@ end;
 function Indefinite(s: String; qty: Integer): String;
 begin
   if qty = 1 then begin
-    if Pos(s[1], 'AEIOUÜaeiouü') > 0
+    if Pos(s[1], 'AEIOUï¿½aeiouï¿½') > 0
     then Result := 'an ' + s
     else Result := 'a ' + s;
   end else begin
@@ -1279,7 +1176,8 @@ begin
   FMinToTray := true;
   FExportSheets := false;
 
-  MakeFileAssociations;
+  Application.OnEndSession := @OnEndSession;
+  Application.OnQueryEndSession := @OnQueryEndSession;
 end;
 
 procedure TMainForm.SpeedButton1Click(Sender: TObject);

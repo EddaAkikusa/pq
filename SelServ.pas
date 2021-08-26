@@ -43,7 +43,7 @@ implementation
 
 uses NewGuy, Login, Main, Web;
 
-{$R *.dfm}
+{$R *.lfm}
 
 function Take(var s: String): String;
 begin
