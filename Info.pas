@@ -3,12 +3,15 @@ unit Info;
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, OleCtrls, SHDocVw;
+  SysUtils, Variants, Classes, Graphics, Controls, Forms, Dialogs, IpHtml;
 
 type
+
+  { TForm4 }
+
   TForm4 = class(TForm)
-    WebBrowser1: TWebBrowser;
+    WebBrowser1: TIpHtmlPanel;
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -21,6 +24,11 @@ var
 implementation
 
 {$R *.lfm}
+
+procedure TForm4.FormCreate(Sender: TObject);
+begin
+
+end;
 
 procedure TForm4.Go(url: String);
 begin

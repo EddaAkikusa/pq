@@ -11,7 +11,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="23"/>
       </Unit>
       <Unit>
         <Filename Value="Front.pas"/>
@@ -19,20 +19,20 @@
         <ComponentName Value="FrontForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <CursorPos X="37" Y="35"/>
-        <UsageCount Value="20"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="31"/>
+        <CursorPos X="56" Y="36"/>
+        <UsageCount Value="23"/>
       </Unit>
       <Unit>
         <Filename Value="Config.pas"/>
         <IsPartOfProject Value="True"/>
-        <HasResources Value="True"/>
         <ComponentName Value="K"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="20"/>
+        <CursorPos X="102" Y="14"/>
+        <UsageCount Value="23"/>
       </Unit>
       <Unit>
         <Filename Value="Main.pas"/>
@@ -41,31 +41,30 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="34"/>
-        <UsageCount Value="20"/>
+        <CursorPos X="42" Y="2"/>
+        <UsageCount Value="23"/>
       </Unit>
       <Unit>
         <Filename Value="NewGuy.pas"/>
         <IsPartOfProject Value="True"/>
-        <HasResources Value="True"/>
         <ComponentName Value="NewGuyForm"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="23"/>
       </Unit>
       <Unit>
         <Filename Value="SelServ.pas"/>
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="-1"/>
-        <WindowIndex Value="-1"/>
-        <TopLine Value="-1"/>
-        <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="20"/>
+        <TopLine Value="10"/>
+        <CursorPos X="29" Y="17"/>
+        <UsageCount Value="23"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="Web.pas"/>
@@ -74,7 +73,7 @@
         <WindowIndex Value="-1"/>
         <TopLine Value="-1"/>
         <CursorPos X="-1" Y="-1"/>
-        <UsageCount Value="20"/>
+        <UsageCount Value="23"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/winunits-base/src/shellapi.pp"/>
@@ -85,9 +84,12 @@
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/rtl/wince/windows.pp"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="19"/>
-        <UsageCount Value="10"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="44"/>
+        <CursorPos X="28" Y="52"/>
+        <UsageCount Value="12"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/nonwin32/messages.pp"/>
@@ -123,22 +125,31 @@
         <CursorPos X="8" Y="201"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="Info.pas"/>
+        <HasResources Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="5"/>
+        <CursorPos X="44" Y="14"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="Login.pas"/>
+        <ComponentName Value="LoginForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="30" Y="43"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="3">
+    <JumpHistory HistoryIndex="1">
       <Position>
-        <Filename Value="Front.pas"/>
+        <Filename Value="SelServ.pas"/>
       </Position>
       <Position>
-        <Filename Value="Front.pas"/>
-        <Caret Line="39" Column="3" TopLine="26"/>
-      </Position>
-      <Position>
-        <Filename Value="Front.pas"/>
-        <Caret Line="24" Column="20"/>
-      </Position>
-      <Position>
-        <Filename Value="Front.pas"/>
-        <Caret Line="40" Column="53"/>
+        <Filename Value="SelServ.pas"/>
+        <Caret Line="17" Column="29" TopLine="10"/>
       </Position>
     </JumpHistory>
     <RunParams>

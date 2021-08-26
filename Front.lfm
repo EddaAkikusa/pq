@@ -1,7 +1,7 @@
 object FrontForm: TFrontForm
-  Left = 396
+  Left = 407
   Height = 255
-  Top = 160
+  Top = 229
   Width = 452
   AlphaBlendValue = 100
   BorderIcons = []

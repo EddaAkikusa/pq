@@ -3,8 +3,8 @@ unit Login;
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ExtCtrls, Psock, NMHttp;
+  SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls, LCLIntf;
 
 type
   TLoginForm = class(TForm)
@@ -35,13 +35,13 @@ var
 
 implementation
 
-uses ShellAPI, Main, NewGuy, SelServ;
+uses Main, NewGuy, SelServ;
 
 {$R *.lfm}
 
 procedure TLoginForm.Label2Click(Sender: TObject);
 begin
-	ShellExecute(GetDesktopWindow(), 'open', PChar(TLabel(Sender).Caption), nil, '', SW_SHOW);
+  OpenURL(PChar(TLabel(Sender).Caption));
 end;
 
 procedure TLoginForm.AccountChange(Sender: TObject);

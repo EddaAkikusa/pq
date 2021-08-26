@@ -4,8 +4,8 @@ unit SelServ;
 interface
 
 uses
-  Windows, Messages, SysUtils, Forms, Dialogs, StdCtrls, ExtCtrls,
-  ComCtrls, Controls, Classes;
+  SysUtils, Forms, Dialogs, StdCtrls, ExtCtrls, ComCtrls, Controls, Classes,
+  RichMemo;
 
 type
   TServerSelectForm = class(TForm)
@@ -13,7 +13,7 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Panel1: TPanel;
-    Desc: TRichEdit;
+    Desc: TRichMemo;
     Select: TButton;
     Button2: TButton;
     Descs: TListBox;
