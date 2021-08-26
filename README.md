@@ -4,13 +4,9 @@ ProgressQuest v6.3
 BUILDING
 --------
 
-Requires Delphi 6.
+Requires ~~Delphi 6~~ Free Pascal and Lazarus Component Library.
 
-Requires the package in DelphiZLib.zip to be installed in Delphi, or
-decompress the .obj files from there into this, the project, directory.
-
-
-VCS NOTES
+OLD VCS NOTES
 ---------
 
 Converted to Mercurial on 1/12/2010 & sent to
