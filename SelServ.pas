@@ -5,7 +5,7 @@ interface
 
 uses
   SysUtils, Forms, Dialogs, StdCtrls, ExtCtrls, ComCtrls, Controls, Classes,
-  RichMemo;
+  RichMemo, fphttpclient;
 
 type
   TServerSelectForm = class(TForm)
@@ -41,7 +41,7 @@ function Take(var s: String): String;
 
 implementation
 
-uses NewGuy, Login, Main, Web;
+uses NewGuy, Main;
 
 {$R *.lfm}
 
@@ -113,10 +113,10 @@ begin
   try
     Screen.Cursor := crHourglass;
     try
-      reply := DownloadString(url);
+      reply := TFPHttpClient.SimpleGet(url);
       ParseServerList(reply);
     except
-      on EWebError do begin
+      on EHTTPClient do begin
         ShowMessage('Error connecting to Progress Quest server');
         ModalResult := mrCancel;
       end;

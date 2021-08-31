@@ -35,7 +35,7 @@ var
 
 implementation
 
-uses Main, NewGuy, SelServ;
+uses Main, SelServ;
 
 {$R *.lfm}
 

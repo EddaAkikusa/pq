@@ -1,11 +1,13 @@
 unit NewGuy;
 { copyright (c)2002 Eric Fredricksen all rights reserved }
 
+{$mode delphi}
+
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ExtCtrls, ComCtrls, AppEvnts, NMURL;
+  SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls, ComCtrls;
 
 type
   TNewGuyForm = class(TForm)
@@ -32,10 +34,8 @@ type
     Name: TLabeledEdit;
     OldRolls: TListBox;
     Button2: TButton;
-    PoorCodeDesign: TNMURL;
     Account: TLabeledEdit;
     Password: TLabeledEdit;
-    ApplicationEvents1: TApplicationEvents;
     Gen: TButton;
     procedure RerollClick(Sender: TObject);
     procedure UnrollClick(Sender: TObject);
@@ -62,14 +62,22 @@ function GenerateName: string;
 
 implementation
 
-uses Main, SelServ, StrUtils, Web, Config;
+uses Main, SelServ, StrUtils, Config, fphttpclient;
 
 {$R *.lfm}
 
 function UrlEncode(s: string): string;
+var
+  i: integer;
+  source: PAnsiChar;
 begin
-  NewGuyForm.PoorCodeDesign.InputString := s;
-  Result := NewGuyForm.PoorCodeDesign.Encode;
+  result := '';
+  source := pansichar(s);
+  for i := 1 to length(source) do
+    if not (source in ['A'..'Z', 'a'..'z', '0'..'9', '-', '_', '~', '.', ':', '/']) then
+      result := result + '%' + inttohex(ord(source), 2)
+    else
+      result := result + source;
 end;
 
 procedure Roll(stat: TPanel);
@@ -189,11 +197,8 @@ begin
                 '&name=' + UrlEncode(Name.Text) +
                 '&realm=' + UrlEncode(MainForm.GetHostName) +
                 RevString;
-        ParseSoldResponse(DownloadString(url + args));
+        ParseSoldResponse(string(TFPHTTPClient.SimpleGet(url + args)));
       except
-        on EWebError do begin
-          ShowMessage('Error connecting to server');
-        end;
       end;
     finally
       Screen.Cursor := crDefault;

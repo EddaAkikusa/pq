@@ -149,7 +149,7 @@ object MainForm: TMainForm
         item
           AutoSize = True
           Caption = 'Value'
-          Width = 89
+          Width = 104
         end>
       ColumnClick = False
       HideSelection = False
@@ -179,7 +179,7 @@ object MainForm: TMainForm
         item
           AutoSize = True
           Caption = 'Value'
-          Width = 89
+          Width = 104
         end>
       ColumnClick = False
       HideSelection = False
@@ -220,7 +220,7 @@ object MainForm: TMainForm
         item
           AutoSize = True
           Caption = 'Spell'
-          Width = 89
+          Width = 100
         end      
         item
           Caption = 'Level'
@@ -495,7 +495,7 @@ object MainForm: TMainForm
         item
           AutoSize = True
           Caption = 'Equipped'
-          Width = 171
+          Width = 186
         end>
       ColumnClick = False
       HideSelection = False

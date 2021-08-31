@@ -24,6 +24,9 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="richmemopackage"/>
+      </Item>
+      <Item>
         <PackageName Value="LCL"/>
       </Item>
     </RequiredPackages>
@@ -65,10 +68,6 @@
         <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit>
-      <Unit>
-        <Filename Value="Web.pas"/>
-        <IsPartOfProject Value="True"/>
       </Unit>
     </Units>
   </ProjectOptions>

@@ -1,6 +1,8 @@
 unit Main;
 { copyright (c)2002 Eric Fredricksen all rights reserved }
 
+{$mode delphi}
+
 {$DEFINE CHEATS}
 {$UNDEF LOGGING}
 
@@ -152,8 +154,7 @@ procedure Navigate(url: String);
 
 implementation
 
-uses Web, StrUtils, NewGuy, Math, Config, Front, Zlib, SelServ, Login,
-  mmsystem, Registry, ShlObj;
+uses StrUtils, NewGuy, Math, Config, Front, PasZLib, SelServ, Login;
 
 {$R *.lfm}
 
