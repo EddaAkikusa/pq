@@ -9,6 +9,7 @@ Requires ~~Delphi 6~~ Free Pascal and Lazarus Component Library.
 TODO
 --------
 - [ ] Cleanup codes.
+- [ ] Make Unroll button works again!
 - [ ] Make save file works again!(Although it is incompatible with the official ones)
 - [ ] Make tray icon works again!
 - [ ] ~~Make online mode works again!~~(This will never happen...Are you seriously need online mode in this port???)
