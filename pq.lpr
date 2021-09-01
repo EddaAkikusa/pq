@@ -5,7 +5,8 @@ uses
   Config in 'Config.pas' {K},
   Front in 'Front.pas' {FrontForm},
   Main in 'Main.pas' {MainForm},
-  NewGuy in 'NewGuy.pas', Interfaces {NewGuyForm};
+  NewGuy in 'NewGuy.pas' {NewGuyForm},
+  Interfaces;
 
 {$R *.res}
 

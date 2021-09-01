@@ -12,14 +12,6 @@ uses
   StdCtrls, ExtCtrls, Buttons, ImgList, Menus;
 
 const
-  // revs:
-  // 6: pq 6.3-fp
-  // 5: pq 6.3
-  // 4: pq 6.2
-  // 3: pq 6.1
-  // 2: pq 6.0
-  // 1: pq 6.0, some early release I guess; don't remember
-  RevString = '&rev=6';
   kFileExt = '.pq3';
 
 type
@@ -96,6 +88,7 @@ type
     FMakeBackups: Boolean;
     FExportSheets: Boolean;
     FSaveFileName: String;
+    WorkDir: String;
     procedure LoadGame(name: String);
     function SaveGame: Boolean;
     procedure Put(list: TListView; key: String; value: String); overload;
@@ -1107,6 +1100,18 @@ begin
   FLogEvents := false;
   FMakeBackups := true;
   FExportSheets := false;
+
+  { Fix a macOS bundle issue }
+  WorkDir := '.';
+  if GetCurrentDir = '/' then begin
+     ShowMessage('You have to choose a working directory to store save files.');
+     with TSelectDirectoryDialog.Create(nil) do
+       try
+          if Execute then
+             WorkDir := FileName;
+       finally
+       end;
+  end;
 end;
 
 function TMainForm.RollCharacter: Boolean;
@@ -1235,6 +1240,7 @@ begin
   Log('Saving game: ' + GameSaveName);
   {$ENDIF}
   Result := true;
+
   try
     if FMakeBackups then begin
       DeleteFile(ChangeFileExt(GameSaveName, '.bak'));
@@ -1318,7 +1324,7 @@ begin
   if FSaveFileName = '' then begin
     FSaveFileName := Get(Traits,'Name');
     FSaveFileName := FSaveFileName + kFileExt;
-    FSaveFileName := ExpandFileName(PChar(FSaveFileName));
+    FSaveFileName := ExpandFileName(PChar(WorkDir + PathDelim + FSaveFileName));
   end;
   Result := FSaveFileName;
 end;
