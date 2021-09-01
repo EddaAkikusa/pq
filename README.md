@@ -4,15 +4,29 @@ ProgressQuest v6.3
 BUILDING
 --------
 
-Requires ~~Delphi 6~~ Free Pascal and Lazarus Component Library.
+Requires Free Pascal and Lazarus Component Library.
 
 TODO
 --------
-- [ ] Cleanup codes.
-- [ ] Make Unroll button works again!
-- [ ] Make save file works again!(Although it is incompatible with the official ones)
-- [ ] Make tray icon works again!
-- [ ] ~~Make online mode works again!~~(This will never happen...Are you seriously need online mode in this port???)
+- [ ] Portability
+  - [ ] Windows
+  - [x] macOS Cocoa
+  - [ ] Linux/FreeBSD
+    - [ ] Gtk+ 2
+    - [ ] Qt 4
+    - [ ] Qt 5
+- [ ] Cleanup code.
+  - [ ] Cleanup Delphi-ish code.
+  - [ ] Fix forms layout.
+  - [ ] Remove dead code.
+- [ ] Fix bugs.
+  - [ ] Fix auto-save when logging-out the system.
+  - [ ] Make Unroll button works again!
+  - [ ] Make save file works again!(Although it is incompatible with the official ones)
+    - [ ] Fix zlib compress and decompress
+    - [ ] Fix serialization and deserialization
+  - [ ] Make tray icon works again!
+  - [ ] ~~Make online mode works again!~~(This will never happen...Are you seriously need online mode in this port???)
 
 SCREENSHOTS
 --------
