@@ -7,7 +7,7 @@ interface
 
 uses
   SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ExtCtrls, ComCtrls;
+  Dialogs, StdCtrls, ExtCtrls, ComCtrls, lcg_random;
 
 type
   TNewGuyForm = class(TForm)
@@ -61,7 +61,7 @@ uses Main, Config;
 
 procedure Roll(stat: TPanel);
 begin
-  stat.Tag := 3 + Random(6) + Random(6) + Random(6);
+  stat.Tag := 3 + LCGRandom(6) + LCGRandom(6) + LCGRandom(6);
   stat.Caption := IntToStr(stat.Tag);
 end;
 

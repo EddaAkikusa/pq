@@ -21,7 +21,7 @@ TODO
   - [ ] Remove dead code.
 - [ ] Fix bugs.
   - [ ] Fix auto-save when logging-out the system.
-  - [ ] Make Unroll button works again!
+  - [x] Make Unroll button works again!
   - [ ] Make save file works again!(Although it is incompatible with the official ones)
     - [ ] Fix zlib compress and decompress
     - [ ] Fix serialization and deserialization

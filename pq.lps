@@ -7,6 +7,7 @@
       <Unit>
         <Filename Value="pq.lpr"/>
         <IsPartOfProject Value="True"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="47" Y="13"/>
         <UsageCount Value="100"/>
@@ -39,8 +40,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="59"/>
-        <CursorPos X="53" Y="84"/>
+        <TopLine Value="108"/>
+        <CursorPos X="53" Y="124"/>
         <UsageCount Value="100"/>
       </Unit>
       <Unit>
@@ -50,7 +51,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="46"/>
         <CursorPos X="10" Y="58"/>
         <UsageCount Value="100"/>
       </Unit>
@@ -169,10 +169,23 @@
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/rtl/objpas/sysutils/filutilh.inc"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
         <TopLine Value="152"/>
         <CursorPos X="125" Y="152"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../bin/lazarus/laz_fixes/components/lazutils/lazutf8.pas"/>
+        <UnitName Value="LazUTF8"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="3394"/>
+        <CursorPos X="44" Y="3410"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="lcg_random.pas"/>
+        <EditorIndex Value="-1"/>
         <UsageCount Value="10"/>
       </Unit>
     </Units>
