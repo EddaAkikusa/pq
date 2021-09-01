@@ -6,6 +6,12 @@ BUILDING
 
 Requires ~~Delphi 6~~ Free Pascal and Lazarus Component Library.
 
+SCREENSHOTS
+--------
+![Front](snapshots/Front.png)
+![New Guy](snapshots/NewGuy.png)
+![Main](snapshots/Main.png)
+
 OLD VCS NOTES
 ---------
 

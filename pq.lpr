@@ -5,8 +5,7 @@ uses
   Config in 'Config.pas' {K},
   Front in 'Front.pas' {FrontForm},
   Main in 'Main.pas' {MainForm},
-  NewGuy in 'NewGuy.pas' {NewGuyForm},
-  SelServ in 'SelServ.pas', Interfaces {ServerSelectForm};
+  NewGuy in 'NewGuy.pas', Interfaces {NewGuyForm};
 
 {$R *.res}
 
@@ -17,6 +16,5 @@ begin
   Application.CreateForm(TK, K);
   Application.CreateForm(TFrontForm, FrontForm);
   Application.CreateForm(TNewGuyForm, NewGuyForm);
-  Application.CreateForm(TServerSelectForm, ServerSelectForm);
   Application.Run;
 end.

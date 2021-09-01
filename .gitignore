@@ -2,3 +2,8 @@ pq.app/*
 backup/*
 lib/*
 .DS_Store
+.vscode/*
+pq
+
+# test
+Xaepcram.*

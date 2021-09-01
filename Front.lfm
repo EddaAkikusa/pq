@@ -1,7 +1,7 @@
 object FrontForm: TFrontForm
-  Left = 407
+  Left = 511
   Height = 255
-  Top = 229
+  Top = 312
   Width = 452
   AlphaBlendValue = 100
   BorderIcons = []
@@ -153,9 +153,9 @@ object FrontForm: TFrontForm
       TabOrder = 0
     end
     object Button2: TButton
-      Left = 271
+      Left = 272
       Height = 25
-      Top = 112
+      Top = 88
       Width = 154
       Caption = '&Load Game'
       ModalResult = 4
@@ -164,20 +164,11 @@ object FrontForm: TFrontForm
     object Button4: TButton
       Left = 271
       Height = 25
-      Top = 160
+      Top = 152
       Width = 154
       Caption = 'E&xit'
       ModalResult = 2
       TabOrder = 2
-    end
-    object Button3: TButton
-      Left = 271
-      Height = 25
-      Top = 64
-      Width = 154
-      Caption = 'New Game (&Multiplayer)'
-      ModalResult = 10
-      TabOrder = 3
     end
     object Panel2: TPanel
       Left = 2
@@ -190,7 +181,7 @@ object FrontForm: TFrontForm
       Caption = 'Panel2'
       ClientHeight = 234
       ClientWidth = 251
-      TabOrder = 4
+      TabOrder = 3
       object Logo: TImage
         Cursor = crHandPoint
         Left = 10

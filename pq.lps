@@ -7,10 +7,9 @@
       <Unit>
         <Filename Value="pq.lpr"/>
         <IsPartOfProject Value="True"/>
-        <EditorIndex Value="5"/>
-        <CursorPos X="59" Y="9"/>
-        <UsageCount Value="53"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="47" Y="13"/>
+        <UsageCount Value="100"/>
       </Unit>
       <Unit>
         <Filename Value="Front.pas"/>
@@ -19,9 +18,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="31"/>
-        <CursorPos X="56" Y="36"/>
-        <UsageCount Value="53"/>
+        <TopLine Value="23"/>
+        <CursorPos X="47" Y="23"/>
+        <UsageCount Value="100"/>
       </Unit>
       <Unit>
         <Filename Value="Config.pas"/>
@@ -31,7 +30,7 @@
         <ResourceBaseClass Value="Form"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="102" Y="14"/>
-        <UsageCount Value="53"/>
+        <UsageCount Value="100"/>
       </Unit>
       <Unit>
         <Filename Value="Main.pas"/>
@@ -39,12 +38,10 @@
         <ComponentName Value="MainForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="4"/>
-        <TopLine Value="144"/>
-        <CursorPos X="50" Y="157"/>
-        <UsageCount Value="53"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="59"/>
+        <CursorPos X="53" Y="84"/>
+        <UsageCount Value="100"/>
       </Unit>
       <Unit>
         <Filename Value="NewGuy.pas"/>
@@ -52,251 +49,137 @@
         <ComponentName Value="NewGuyForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="185"/>
-        <CursorPos X="7" Y="187"/>
-        <UsageCount Value="53"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="46"/>
+        <CursorPos X="10" Y="58"/>
+        <UsageCount Value="100"/>
       </Unit>
       <Unit>
         <Filename Value="SelServ.pas"/>
-        <IsPartOfProject Value="True"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="32"/>
         <CursorPos X="12" Y="44"/>
-        <UsageCount Value="53"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="49"/>
       </Unit>
       <Unit>
         <Filename Value="Web.pas"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="50"/>
         <CursorPos X="3" Y="6"/>
-        <UsageCount Value="52"/>
+        <UsageCount Value="48"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/winunits-base/src/shellapi.pp"/>
         <UnitName Value="ShellApi"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="28"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/rtl/wince/windows.pp"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="44"/>
         <CursorPos X="28" Y="52"/>
-        <UsageCount Value="9"/>
+        <UsageCount Value="4"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/nonwin32/messages.pp"/>
         <UnitName Value="Messages"/>
-        <EditorIndex Value="6"/>
-        <UsageCount Value="10"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/rtl-objpas/src/inc/variants.pp"/>
         <UnitName Value="Variants"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="/Applications/Lazarus/lcl/stdctrls.pp"/>
         <UnitName Value="StdCtrls"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="16"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/rtl/unix/classes.pp"/>
         <UnitName Value="Classes"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/rtl/inc/objpash.inc"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="190"/>
         <CursorPos X="8" Y="201"/>
-        <UsageCount Value="7"/>
+        <UsageCount Value="2"/>
       </Unit>
       <Unit>
         <Filename Value="Info.pas"/>
         <ComponentName Value="Form4"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="2"/>
-        <CursorPos X="71" Y="6"/>
-        <UsageCount Value="26"/>
-        <Loaded Value="True"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="41" Y="21"/>
+        <UsageCount Value="49"/>
       </Unit>
       <Unit>
         <Filename Value="Login.pas"/>
         <ComponentName Value="LoginForm"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="25"/>
+        <EditorIndex Value="-1"/>
         <CursorPos X="10" Y="38"/>
-        <UsageCount Value="10"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="6"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/fcl-web/src/base/fphttpclient.pp"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="1289"/>
         <CursorPos X="33" Y="586"/>
-        <UsageCount Value="26"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="21"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/rtl/inc/systemh.inc"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="452"/>
         <CursorPos X="3" Y="465"/>
-        <UsageCount Value="26"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="21"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/rtl/objpas/objpas.pp"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="103"/>
         <CursorPos X="102" Y="113"/>
-        <UsageCount Value="26"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="21"/>
       </Unit>
       <Unit>
         <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/paszlib/src/paszlib.pas"/>
         <UnitName Value="PasZLib"/>
         <EditorIndex Value="-1"/>
-        <UsageCount Value="16"/>
+        <UsageCount Value="11"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/share/fpcsrc/3.2.2/rtl/objpas/sysutils/sysutilh.inc"/>
+        <EditorIndex Value="-1"/>
+        <CursorPos X="10" Y="29"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/usr/local/share/fpcsrc/3.2.2/rtl/objpas/sysutils/filutilh.inc"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="152"/>
+        <CursorPos X="125" Y="152"/>
+        <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
-      <Position>
-        <Filename Value="NewGuy.pas"/>
-        <Caret Line="39" Column="47" TopLine="25"/>
-      </Position>
-      <Position>
-        <Filename Value="NewGuy.pas"/>
-        <Caret Line="81" Column="33" TopLine="102"/>
-      </Position>
-      <Position>
-        <Filename Value="NewGuy.pas"/>
-        <Caret Line="38" Column="44" TopLine="26"/>
-      </Position>
-      <Position>
-        <Filename Value="SelServ.pas"/>
-        <Caret Line="8" Column="9"/>
-      </Position>
-      <Position>
-        <Filename Value="SelServ.pas"/>
-        <Caret Line="44" Column="25" TopLine="31"/>
-      </Position>
-      <Position>
-        <Filename Value="Login.pas"/>
-        <Caret Line="38" Column="10" TopLine="25"/>
-      </Position>
-      <Position>
-        <Filename Value="SelServ.pas"/>
-        <Caret Line="116" Column="23" TopLine="104"/>
-      </Position>
-      <Position>
-        <Filename Value="SelServ.pas"/>
-        <Caret Line="119" Column="20" TopLine="107"/>
-      </Position>
-      <Position>
-        <Filename Value="SelServ.pas"/>
-        <Caret Line="118" Column="34" TopLine="100"/>
-      </Position>
-      <Position>
-        <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/fcl-web/src/base/fphttpclient.pp"/>
-        <Caret Line="201" Column="20" TopLine="189"/>
-      </Position>
-      <Position>
-        <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/fcl-web/src/base/fphttpclient.pp"/>
-        <Caret Line="200" Column="21" TopLine="235"/>
-      </Position>
-      <Position>
-        <Filename Value="/usr/local/share/fpcsrc/3.2.2/rtl/inc/systemh.inc"/>
-        <Caret Line="465" Column="3" TopLine="452"/>
-      </Position>
-      <Position>
-        <Filename Value="SelServ.pas"/>
-        <Caret Line="115" Column="31" TopLine="107"/>
-      </Position>
-      <Position>
-        <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/fcl-web/src/base/fphttpclient.pp"/>
-        <Caret Line="201" Column="71" TopLine="191"/>
-      </Position>
-      <Position>
-        <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/fcl-web/src/base/fphttpclient.pp"/>
-        <Caret Line="334" Column="52" TopLine="315"/>
-      </Position>
-      <Position>
-        <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/fcl-web/src/base/fphttpclient.pp"/>
-        <Caret Line="1501" Column="46" TopLine="1531"/>
-      </Position>
-      <Position>
-        <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/fcl-web/src/base/fphttpclient.pp"/>
-        <Caret Line="192" Column="14" TopLine="181"/>
-      </Position>
-      <Position>
-        <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/fcl-web/src/base/fphttpclient.pp"/>
-        <Caret Line="297" Column="74" TopLine="279"/>
-      </Position>
-      <Position>
-        <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/fcl-web/src/base/fphttpclient.pp"/>
-        <Caret Line="312" Column="74" TopLine="292"/>
-      </Position>
-      <Position>
-        <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/fcl-web/src/base/fphttpclient.pp"/>
-        <Caret Line="403" Column="74" TopLine="383"/>
-      </Position>
-      <Position>
-        <Filename Value="/usr/local/share/fpcsrc/3.2.2/packages/fcl-web/src/base/fphttpclient.pp"/>
-        <Caret Line="577" Column="71" TopLine="561"/>
-      </Position>
-      <Position>
-        <Filename Value="Main.pas"/>
-        <Caret Line="157" Column="50" TopLine="144"/>
-      </Position>
-      <Position>
-        <Filename Value="SelServ.pas"/>
-        <Caret Line="119" Column="21" TopLine="107"/>
-      </Position>
-      <Position>
-        <Filename Value="NewGuy.pas"/>
-        <Caret Line="77" Column="20" TopLine="64"/>
-      </Position>
-      <Position>
-        <Filename Value="SelServ.pas"/>
-        <Caret Line="44" Column="12" TopLine="32"/>
-      </Position>
-      <Position>
-        <Filename Value="NewGuy.pas"/>
-        <Caret Line="204" Column="3" TopLine="192"/>
-      </Position>
-      <Position>
-        <Filename Value="NewGuy.pas"/>
-        <Caret Line="78" Column="41" TopLine="66"/>
-      </Position>
-      <Position>
-        <Filename Value="NewGuy.pas"/>
-        <Caret Line="201" Column="13" TopLine="190"/>
-      </Position>
-      <Position>
-        <Filename Value="NewGuy.pas"/>
-        <Caret Line="77" Column="20" TopLine="65"/>
-      </Position>
-      <Position>
-        <Filename Value="NewGuy.pas"/>
-        <Caret Line="206" Column="7" TopLine="194"/>
-      </Position>
-    </JumpHistory>
+    <General>
+      <ActiveWindowIndexAtStart Value="-1"/>
+    </General>
+    <JumpHistory HistoryIndex="-1"/>
     <RunParams>
       <FormatVersion Value="2"/>
       <Modes ActiveMode=""/>

@@ -3,7 +3,6 @@ unit Main;
 
 {$mode delphi}
 
-{$DEFINE CHEATS}
 {$UNDEF LOGGING}
 
 interface
@@ -52,12 +51,6 @@ type
     Label7: TLabel;
     ImageList1: TImageList;
     Label8: TLabel;
-    Cheats: TPanel;
-    CashIn: TButton;
-    Button1: TButton;
-    FinishQuest: TButton;
-    Button3: TButton;
-    CheatPlot: TButton;
     vars: TPanel;
     fTask: TLabel;
     fQuest: TLabel;
@@ -65,12 +58,7 @@ type
     procedure GoButtonClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure SpeedButton1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
-    procedure CashInClick(Sender: TObject);
-    procedure FinishQuestClick(Sender: TObject);
-    procedure CheatPlotClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
@@ -91,15 +79,9 @@ type
     function InterestingItem: String;
     function MonsterTask(var level: Integer): String;
     function EquipPrice: Integer;
-    procedure Brag(trigger: String);
     procedure TriggerAutosizes;
     function GameSaveName: String;
-    procedure Guildify;
     procedure ClearAllSelections;
-    procedure OnQueryEndSession(var cancel: Boolean);
-    procedure OnEndSession(sender: TObject);
-    procedure RestoreIt;
-    function AuthenticateUrl(url: String): String;
     {$IFDEF LOGGING}
     procedure Log(line: String);
     {$ENDIF}
@@ -112,7 +94,6 @@ type
     FReportSave: Boolean;
     FLogEvents: Boolean;
     FMakeBackups: Boolean;
-    FMinToTray: Boolean;
     FExportSheets: Boolean;
     FSaveFileName: String;
     procedure LoadGame(name: String);
@@ -128,20 +109,6 @@ type
     function GetI(list: TListView; index: Integer): Integer; overload;
     function Sum(list: TListView): Integer;
     function RollCharacter: Boolean;
-    function GetMotto: String;
-    function GetPasskey: Integer;
-    procedure SetMotto(v: String);
-    procedure SetPasskey(v: String);
-    function GetHostAddr: String;
-    function GetHostName: String;
-    procedure SetHostAddr(v: String);
-    procedure SetHostName(v: String);
-    function GetLogin: String;
-    function GetPassword: String;
-    procedure SetLogin(v: String);
-    procedure SetPassword(v: String);
-    function GetGuild: String;
-    procedure SetGuild(v: String);
   end;
 
 var
@@ -150,54 +117,23 @@ var
 function Split(s: String; field: Integer): String; overload;
 function Split(s: String; field: Integer; separator: String): String; overload;
 
-procedure Navigate(url: String);
 
 implementation
 
-uses StrUtils, NewGuy, Math, Config, Front, PasZLib, SelServ, Login;
+uses StrUtils, NewGuy, Math, Config, Front, PasZLib;
 
 {$R *.lfm}
 
 procedure StartTimer;
 begin
   if not MainForm.Timer1.Enabled then begin
-    MainForm.Timer1.Tag := timeGetTime;
+    MainForm.Timer1.Tag := gettickcount64;
     //Shell_NotifyIcon(NIM_ADD, @MainForm.FTrayIcon);
   end;
   MainForm.Timer1.Enabled := True;
   // BS location for this, but...
   MainForm.Caption := 'ProgressQuest - ' + ChangeFileExt(ExtractFileName(MainForm.GameSaveName), '');
 end;
-
-function TMainForm.GetPasskey: Integer; begin Result := Traits.Tag; end;
-procedure TMainForm.SetPasskey(v: String);
-begin
-  Traits.Hint := v;
-  Traits.Tag := StrToIntDef(Traits.Hint,0);
-end;
-
-function TMainForm.GetMotto: String; begin Result := Stats.Hint; end;
-procedure TMainForm.SetMotto(v: String); begin Stats.Hint := v; end;
-
-function TMainForm.GetHostName: String; begin Result := Spells.Hint; end;
-procedure TMainForm.SetHostName(v: String); begin Spells.Hint := v; end;
-
-function TMainForm.GetHostAddr: String;
-begin
-  Result := Equips.Hint;
-  if (Result = '') and (GetPasskey <> 0) then
-    Result := 'http://www.progressquest.com/knoram.php?';
-end;
-procedure TMainForm.SetHostAddr(v: String); begin Equips.Hint := v; end;
-
-function TMainForm.GetLogin: String; begin Result := Inventory.Hint; end;
-procedure TMainForm.SetLogin(v: String); begin Inventory.Hint := v; end;
-
-function TMainForm.GetPassword: String; begin Result := Plots.Hint; end;
-procedure TMainForm.SetPassword(v: String); begin Plots.Hint := v; end;
-
-function TMainForm.GetGuild: String; begin Result := Label1.Hint; end;
-procedure TMainForm.SetGuild(v: String); begin Label1.Hint := v; end;
 
 procedure TMainForm.Q(s: string);
 begin
@@ -656,7 +592,6 @@ begin
 
   StartTimer;
   SaveGame;
-  Brag('s');
 end;
 
 procedure TMainForm.WinSpell;
@@ -866,6 +801,7 @@ end;
 
 function IntToRoman(n: Integer): String;
 begin
+  Result := '';
   while Rome(n, 1000, Result, 'M') do ;
   Rome(n, 900, Result, 'CM');
   Rome(n, 500, Result, 'D');
@@ -916,7 +852,6 @@ begin
   WinItem;
   WinEquip;
   SaveGame;
-  Brag('a');
 end;
 
 
@@ -959,8 +894,6 @@ var
   procedure WrLn; overload; begin Wr(#13#10); end;
 begin
   Wr(Get(Traits,'Name'));
-  if GetHostName <> '' then
-    Wr(' [' + GetHostName + ']');
   WrLn;
   WrLn(Get(Traits,'Race') + ' ' +  Get(Traits,'Class'));
   WrLn(Format('Level %d (exp. %d/%d)', [GetI(Traits,'Level'), ExpBar.Position, ExpBar.Max]));
@@ -1095,7 +1028,6 @@ begin
     Max := LevelUpTime(GetI(Traits,'Level'));
   end;
   SaveGame;
-  Brag('l');
 end;
 
 procedure TMainForm.ClearAllSelections;
@@ -1154,13 +1086,13 @@ begin
 
       Dequeue();
     end else with TaskBar do begin
-      elapsed := LongInt(timeGetTime) - LongInt(Timer1.Tag);
+      elapsed := LongInt(gettickcount64) - LongInt(Timer1.Tag);
       if elapsed > 100 then elapsed := 100;
       if elapsed < 0 then elapsed := 0;
       Position := Position + elapsed;
     end;
   end;
-  Timer1.Tag := timeGetTime;
+  Timer1.Tag := gettickcount64;
 end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
@@ -1174,18 +1106,7 @@ begin
   FReportSave := true;
   FLogEvents := false;
   FMakeBackups := true;
-  FMinToTray := true;
   FExportSheets := false;
-
-  Application.OnEndSession := @OnEndSession;
-  Application.OnQueryEndSession := @OnQueryEndSession;
-end;
-
-procedure TMainForm.SpeedButton1Click(Sender: TObject);
-begin
-  {$IFDEF CHEATS}
-  TaskBar.Position := TaskBar.Max;
-  {$ENDIF}
 end;
 
 function TMainForm.RollCharacter: Boolean;
@@ -1244,10 +1165,8 @@ const
     '  -log           Create a text log of events as they occur in the game'#10 +
     {$ENDIF}
     '  -no-report-save   Do not display the "Game saved" message when saving'#10 +
-    '  -no-tray       Do not minimize to the system tray'#10 +
     '  -export        Export a text character sheet periodically'#10 +
     '  -export-only   Export a text character sheet now, then exit'#10 +
-    '  -no-proxy      Do not use Internet Explorer proxy settings'#10 +
     '  -help          Display this chatter (and exit)'#10 ;
 
 procedure TMainForm.FormShow(Sender: TObject);
@@ -1267,14 +1186,10 @@ begin
     {$ENDIF}
     else if ParamStr(i) = '-no-report-save'
     then FReportSave := false
-    else if ParamStr(i) = '-no-tray'
-    then FMinToTray := false
     else if ParamStr(i) = '-export'
     then FExportSheets := true
     else if ParamStr(i) = '-export-only'
     then exportandexit := true
-    else if ParamStr(i) = '-no-proxy'
-    then ProxyOK := false
     else if ParamStr(i) = '-help'
     then begin
       ShowMessage(KUsage);
@@ -1291,10 +1206,6 @@ begin
     end;
   end;
   while not Done do begin
-    SetHostName('');
-    SetHostAddr('');
-    SetLogin('');
-    SetPassword('');
     case FrontForm.ShowModal of
     mrOk: begin
         done := RollCharacter;
@@ -1306,49 +1217,12 @@ begin
           Done := true;
         end;
       end;
-    mrYesToAll: begin
-        Done := ServerSelectForm.Go;
-      end;
     mrCancel: begin
         Close;
         Done := true;
       end;
     end;
   end;
-end;
-
-procedure TMainForm.Button1Click(Sender: TObject);
-begin
-  {$IFDEF CHEATS}
-  LevelUp;
-  {$ENDIF}
-end;
-
-procedure TMainForm.CashInClick(Sender: TObject);
-begin
-  {$IFDEF CHEATS}
-  WinEquip;
-  WinItem;
-  WinSpell;
-  WinStat;
-  Add(Inventory,'Gold',Random(100));
-  {$ENDIF}
-end;
-
-procedure TMainForm.FinishQuestClick(Sender: TObject);
-begin
-  {$IFDEF CHEATS}
-  QuestBar.Position := QuestBar.Max;
-  TaskBar.Position := TaskBar.Max;
-  {$ENDIF}
-end;
-
-procedure TMainForm.CheatPlotClick(Sender: TObject);
-begin
-  {$IFDEF CHEATS}
-  PlotBar.Position := PlotBar.Max;
-  TaskBar.Position := TaskBar.Max;
-  {$ENDIF}
 end;
 
 function TMainForm.SaveGame: Boolean;
@@ -1364,7 +1238,7 @@ begin
   try
     if FMakeBackups then begin
       DeleteFile(ChangeFileExt(GameSaveName, '.bak'));
-      MoveFile(PChar(GameSaveName), PChar(ChangeFileExt(GameSaveName, '.bak')));
+      RenameFile(PChar(GameSaveName), PChar(ChangeFileExt(GameSaveName, '.bak')));
     end;
     f := TFileStream.Create(GameSaveName, fmCreate);
   except
@@ -1380,8 +1254,8 @@ begin
     m.WriteComponent(Components[i]);
 
   m.Seek(0, soFromBeginning);
-  ZCompressStream(m, f);
-
+  //ZCompressStream(m, f);
+  f.Write(m, m.Size);
   m.Free;
   f.Free;
 end;
@@ -1396,14 +1270,11 @@ begin
   m := TMemoryStream.Create;
   f := TFileStream.Create(name, fmOpenRead);
   try
-    ZDecompressStream(f, m);
+    //ZDecompressStream(f, m);
+    m.Write(f, f.Size);
     f.Free;
   except
-    on EZCompressionError do begin
-      ShowMessage('Error loading game.');
-      Close;
-      Exit;
-    end;
+
   end;
   Traits.Items.Clear;
   Stats.Items.Clear;
@@ -1434,7 +1305,6 @@ procedure TMainForm.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   if Timer1.Enabled then begin
     Timer1.Enabled := false;
-    Shell_NotifyIcon(NIM_DELETE, @FTrayIcon);
     if SaveGame then
       if FReportSave then
         ShowMessage('Game saved as ' + GameSaveName);
@@ -1447,8 +1317,6 @@ function TMainForm.GameSaveName: String;
 begin
   if FSaveFileName = '' then begin
     FSaveFileName := Get(Traits,'Name');
-    if GetHostName <> '' then
-      FSaveFileName := FSaveFileName + ' [' + GetHostName + ']';
     FSaveFileName := FSaveFileName + kFileExt;
     FSaveFileName := ExpandFileName(PChar(FSaveFileName));
   end;
@@ -1458,33 +1326,9 @@ end;
 procedure TMainForm.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-  if (FindWindow('TAppBuilder', nil) > 0) and (ssCtrl in Shift) and (ssShift in Shift) and (Key = ord('C')) then begin
-    {$IFDEF CHEATS}
-    Cheats.Visible := not Cheats.Visible;
-    {$ENDIF}
-  end;
   if (ssCtrl in Shift) and (Key = ord('A')) then begin
     ShowMessage(CharSheet);
   end;
-  if GetPasskey = 0 then Exit; // no need for these things
-  if (ssCtrl in Shift) and (Key = ord('B')) then begin
-    Brag('b');
-    Navigate(GetHostAddr + 'name=' + UrlEncode(Get(Traits,'Name')));
-  end;
-  if (ssCtrl in Shift) and (Key = ord('M')) then begin
-    SetMotto(InputBox('Progress Quest', 'Declare your motto!', GetMotto));
-    Brag('m');
-    Navigate(GetHostAddr + 'name=' + UrlEncode(Get(Traits,'Name')));
-  end;
-  if (ssCtrl in Shift) and (Key = ord('G')) then begin
-    SetGuild(InputBox('Progress Quest', 'Choose a guild.'#13#13'Make sure you undestand the guild rules before you join one. To learn more about guilds, visit http://progressquest.com/guilds.php', GetGuild));
-    Guildify;
-  end;
-end;
-
-procedure Navigate(url: String);
-begin
-  ShellExecute(GetDesktopWindow(), 'open', PChar(url), nil, '', SW_SHOW);
 end;
 
 function LFSR(pt: String; salt: Integer): Integer;
@@ -1501,110 +1345,7 @@ begin
           xor (1 and ((Result shr 31) xor (Result shr 5)));
 end;
 
-
-procedure TMainForm.Brag(trigger: String);
-var
-  url, body: string;
-  best, i: Integer;
-const
-  flat = 1;
-begin
-  if FExportSheets then
-    ExportCharSheet;
-  if GetPasskey = 0 then Exit; // not a online game!
-  url := 'cmd=b&t=' + trigger;
-  with Traits do for i := 0 to Items.Count-1 do
-    url := url + '&' + LowerCase(Items[i].Caption[1]) + '=' + UrlEncode(Items[i].Subitems[0]);
-  url := url + '&x=' + IntToStr(ExpBar.Position);
-  url := url + '&i=' + UrlEncode(Get(Equips,Equips.Tag));
-  if Equips.Tag > 1 then url := url + '+' + Equips.Items[Equips.Tag].Caption;
-  best := 0;
-  if Spells.Items.Count > 0 then with Spells do begin
-    for i := 1 to Items.Count-1 do
-      if (i+flat) * RomanToInt(Get(Spells,i)) >
-         (best+flat) * RomanToInt(Get(Spells,best)) then
-        best := i;
-    url := url + '&z=' + UrlEncode(Items[best].Caption + ' ' + Get(Spells,best));
-  end;
-  best := 0;
-  for i := 1 to 5 do
-    if GetI(Stats,i) > GetI(Stats,best) then best := i;
-  url := url + '&k=' + Stats.Items[best].Caption + '+' + Get(Stats,best);
-  url := url + '&a=' + UrlEncode(Plots.Items[Plots.Items.Count-1].Caption);
-  url := url + '&h=' + UrlEncode(GetHostName);
-  url := url + RevString;
-  url := url + '&p=' + IntToStr(LFSR(url, GetPasskey));
-  url := url + '&m=' + UrlEncode(GetMotto);
-  url := AuthenticateUrl(GetHostAddr + url);
-  try
-    body := DownloadString(url);
-    if (LowerCase(Split(body,0)) = 'report') then
-      ShowMessage(Split(body,1));
-  except
-    on EWebError do begin
-      // 'ats okay.
-    end;
-  end;
-end;
-
-function TMainForm.AuthenticateUrl(url: String): String;
-begin
-  if (GetLogin <> '') or (GetPassword <> '') then
-    Result := StuffString(url, 8, 0, GetLogin+':'+GetPassword+'@')
-  else
-    Result := url;
-end;
-
-procedure TMainForm.Guildify;
-var
-  url, s,b: string;
-  i: Integer;
-begin
-  if GetPasskey = 0 then Exit; // not a online game!
-  url := 'cmd=guild';
-  with Traits do for i := 0 to Items.Count-1 do
-    url := url + '&' + LowerCase(Items[i].Caption[1]) + '=' + UrlEncode(Items[i].Subitems[0]);
-  url := url + '&h=' + UrlEncode(GetHostName);
-  url := url + RevString;
-  url := url + '&guild=' + UrlEncode(GetGuild);
-  url := url + '&p=' + IntToStr(LFSR(url, GetPasskey));
-  url := AuthenticateUrl(GetHostAddr + url);
-  try
-    b := DownloadString(url);
-    s := Take(b);
-    if s <> '' then ShowMessage(s);
-    s := Take(b);
-    if s <> '' then Navigate(s);
-  except
-    on EWebError do begin
-      // 'ats okay.
-      Abort;
-    end;
-  end;
-end;
-
-procedure TMainForm.OnQueryEndSession(var Msg: TMessage);
-var Action: TCloseAction;
-begin
-  FReportSave := false;
-  FormClose(Self, Action);
-  ReplyMessage(-1);
-end;
-
-procedure TMainForm.OnEndSession(var Msg: TMessage);
-var Action: TCloseAction;
-begin
-  Msg.Result := 0;
-  if Msg.wParam <> 0 then begin
-    FReportSave := false;
-    FormClose(Self, Action);
-  end;
-  ReplyMessage(0);
-end;
-
 initialization
   RegisterClasses([TMainForm]);
 end.
-
-
 

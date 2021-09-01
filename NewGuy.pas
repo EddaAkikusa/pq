@@ -34,22 +34,16 @@ type
     Name: TLabeledEdit;
     OldRolls: TListBox;
     Button2: TButton;
-    Account: TLabeledEdit;
-    Password: TLabeledEdit;
     Gen: TButton;
     procedure RerollClick(Sender: TObject);
     procedure UnrollClick(Sender: TObject);
     procedure SoldClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure ApplicationEvents1Minimize(Sender: TObject);
     procedure GenClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
     procedure RollEm;
-    function GetAccount: String;
-    function GetPassword: String;
-    procedure ParseSoldResponse(body: String);
   public
     function Go: Boolean;
   end;
@@ -57,28 +51,13 @@ type
 var
   NewGuyForm: TNewGuyForm;
 
-function UrlEncode(s: string): string;
 function GenerateName: string;
 
 implementation
 
-uses Main, SelServ, StrUtils, Config, fphttpclient;
+uses Main, Config;
 
 {$R *.lfm}
-
-function UrlEncode(s: string): string;
-var
-  i: integer;
-  source: PAnsiChar;
-begin
-  result := '';
-  source := pansichar(s);
-  for i := 1 to length(source) do
-    if not (source in ['A'..'Z', 'a'..'z', '0'..'9', '-', '_', '~', '.', ':', '/']) then
-      result := result + '%' + inttohex(ord(source), 2)
-    else
-      result := result + source;
-end;
 
 procedure Roll(stat: TPanel);
 begin
@@ -135,8 +114,6 @@ begin
   if Tag > 0 then begin
     Tag := 0;
     Caption := 'Progress Quest - New Character';
-    if MainForm.GetHostName <> '' then
-      Caption := Caption + ' [' + MainForm.GetHostName + ']';
     Randomize;
     RollEm;
     with Race do
@@ -154,71 +131,11 @@ begin
   RollEm;
 end;
 
-procedure TNewGuyForm.ParseSoldResponse(body: String);
-begin
-  if (LowerCase(Split(body,0)) = 'ok') then begin
-    MainForm.SetPasskey(Split(body,1));
-    MainForm.SetLogin(GetAccount);
-    MainForm.SetPassword(GetPassword);
-    ModalResult := mrOk;
-  end else begin
-    ShowMessage(body);
-  end;
-end;
-
-function TNewGuyForm.GetAccount: String;
-begin
-  Result := '';
-  if Account.Visible then Result := Account.Text;
-end;
-
-function TNewGuyForm.GetPassword: String;
-begin
-  Result := '';
-  if Password.Visible then Result := Password.Text;
-end;
-
 procedure TNewGuyForm.SoldClick(Sender: TObject);
-var url, args: String;
 begin
-  if MainForm.GetHostAddr = ''
-  then ModalResult := mrOk
-  else begin
-    try
-      Screen.Cursor := crHourglass;
-      try
-        if (MainForm.Label8.Tag and 16) = 0
-        then url := MainForm.GetHostAddr
-        else url := 'http://www.progressquest.com/create.php?';
-        // url := StringReplace(url, '.com/', '.com/dev/', []);
-        if (GetAccount <> '') or (GetPassword <> '') then
-          url := StuffString(url, 8, 0, GetAccount+':'+GetPassword+'@');
-        args := 'cmd=create' +
-                '&name=' + UrlEncode(Name.Text) +
-                '&realm=' + UrlEncode(MainForm.GetHostName) +
-                RevString;
-        ParseSoldResponse(string(TFPHTTPClient.SimpleGet(url + args)));
-      except
-      end;
-    finally
-      Screen.Cursor := crDefault;
-    end;
-  end;
+  ModalResult := mrOk;
 end;
 
-{
-procedure TNewGuyForm.ServerAboutToSend(Sender: TObject);
-begin
-  Server.SendHeader.Values['Content-Type'] := 'text/plain';
-  Server.SendHeader.Values['Motto'] := MainForm.GetMotto;
-  Server.SendHeader.Values['Guild'] := MainForm.GetGuild;
-end;
- }
-
-procedure TNewGuyForm.ApplicationEvents1Minimize(Sender: TObject);
-begin
-  MainForm.MinimizeIt;
-end;
 
 function GenerateName: string;
 const
@@ -239,6 +156,7 @@ var
     Result := Split(s, Random(count));
   end;
 begin
+  Result := '';
   for i := 0 to 5 do
     Result := Result + Pick(KParts[i mod 3]);
   Result := UpperCase(Copy(Result,1,1)) + Copy(Result,2,Length(Result));

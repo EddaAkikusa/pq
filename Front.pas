@@ -18,7 +18,6 @@ type
     OpenDialog1: TOpenDialog;
     Button4: TButton;
     Label2: TLabel;
-    Button3: TButton;
     Panel2: TPanel;
     Logo: TImage;
     Label3: TLabel;
@@ -34,7 +33,7 @@ var
 
 implementation
 
-uses Main, Info;
+uses Main;
 
 {$R *.lfm}
 

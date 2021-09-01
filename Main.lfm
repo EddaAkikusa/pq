@@ -149,7 +149,7 @@ object MainForm: TMainForm
         item
           AutoSize = True
           Caption = 'Value'
-          Width = 104
+          Width = 89
         end>
       ColumnClick = False
       HideSelection = False
@@ -179,7 +179,7 @@ object MainForm: TMainForm
         item
           AutoSize = True
           Caption = 'Value'
-          Width = 104
+          Width = 89
         end>
       ColumnClick = False
       HideSelection = False
@@ -212,7 +212,7 @@ object MainForm: TMainForm
     end
     object Spells: TListView
       Left = 1
-      Height = 174
+      Height = 206
       Top = 271
       Width = 198
       Align = alClient
@@ -220,7 +220,7 @@ object MainForm: TMainForm
         item
           AutoSize = True
           Caption = 'Spell'
-          Width = 100
+          Width = 89
         end      
         item
           Caption = 'Level'
@@ -233,62 +233,6 @@ object MainForm: TMainForm
       RowSelect = True
       TabOrder = 3
       ViewStyle = vsReport
-    end
-    object Cheats: TPanel
-      Left = 1
-      Height = 32
-      Top = 445
-      Width = 198
-      Align = alBottom
-      ClientHeight = 32
-      ClientWidth = 198
-      TabOrder = 4
-      Visible = False
-      object CashIn: TButton
-        Left = 32
-        Height = 25
-        Top = 4
-        Width = 25
-        Caption = '$'
-        OnClick = CashInClick
-        TabOrder = 0
-      end
-      object Button1: TButton
-        Left = 4
-        Height = 25
-        Top = 4
-        Width = 25
-        Caption = 'L+1'
-        OnClick = Button1Click
-        TabOrder = 1
-      end
-      object FinishQuest: TButton
-        Left = 92
-        Height = 25
-        Top = 4
-        Width = 27
-        Caption = 'Q!'
-        OnClick = FinishQuestClick
-        TabOrder = 2
-      end
-      object Button3: TButton
-        Left = 124
-        Height = 25
-        Top = 4
-        Width = 27
-        Caption = 'X!'
-        OnClick = SpeedButton1Click
-        TabOrder = 3
-      end
-      object CheatPlot: TButton
-        Left = 60
-        Height = 25
-        Top = 3
-        Width = 27
-        Caption = 'P!'
-        OnClick = CheatPlotClick
-        TabOrder = 4
-      end
     end
   end
   object Panel3: TPanel
@@ -495,7 +439,7 @@ object MainForm: TMainForm
         item
           AutoSize = True
           Caption = 'Equipped'
-          Width = 186
+          Width = 171
         end>
       ColumnClick = False
       HideSelection = False
