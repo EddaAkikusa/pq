@@ -17,7 +17,7 @@ TODO
     - [ ] Qt 5
 - [ ] Cleanup code.
   - [ ] Cleanup Delphi-ish code.
-  - [ ] Fix forms layout.
+  - [x] Fix forms layout.
   - [ ] Remove dead code.
 - [ ] Fix bugs.
   - [ ] Fix auto-save when logging-out the system.

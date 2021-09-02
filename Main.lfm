@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 487
+  Left = 478
   Height = 513
-  Top = 249
+  Top = 162
   Width = 682
   HorzScrollBar.Visible = False
   VertScrollBar.Visible = False
@@ -91,7 +91,7 @@ object MainForm: TMainForm
   OnKeyDown = FormKeyDown
   OnShow = FormShow
   Position = poScreenCenter
-  LCLVersion = '2.2.0.1'
+  LCLVersion = '2.2.0.2'
   object Panel1: TPanel
     Left = 0
     Height = 478
@@ -117,7 +117,7 @@ object MainForm: TMainForm
     object Label6: TLabel
       Left = 1
       Height = 13
-      Top = 229
+      Top = 296
       Width = 198
       Align = alTop
       Caption = 'Experience'
@@ -125,7 +125,7 @@ object MainForm: TMainForm
     object Label4: TLabel
       Left = 1
       Height = 13
-      Top = 258
+      Top = 325
       Width = 198
       Align = alTop
       Caption = 'Spell Book'
@@ -137,7 +137,7 @@ object MainForm: TMainForm
     end
     object Traits: TListView
       Left = 1
-      Height = 79
+      Height = 109
       Top = 14
       Width = 198
       Align = alTop
@@ -149,7 +149,7 @@ object MainForm: TMainForm
         item
           AutoSize = True
           Caption = 'Value'
-          Width = 89
+          Width = 104
         end>
       ColumnClick = False
       HideSelection = False
@@ -162,13 +162,14 @@ object MainForm: TMainForm
       MultiSelect = True
       ReadOnly = True
       RowSelect = True
+      ScrollBars = ssAutoBoth
       TabOrder = 1
       ViewStyle = vsReport
     end
     object Stats: TListView
       Left = 1
-      Height = 136
-      Top = 93
+      Height = 173
+      Top = 123
       Width = 198
       Align = alTop
       Columns = <      
@@ -179,7 +180,7 @@ object MainForm: TMainForm
         item
           AutoSize = True
           Caption = 'Value'
-          Width = 89
+          Width = 104
         end>
       ColumnClick = False
       HideSelection = False
@@ -195,13 +196,14 @@ object MainForm: TMainForm
       MultiSelect = True
       ReadOnly = True
       RowSelect = True
+      ScrollBars = ssAutoBoth
       TabOrder = 0
       ViewStyle = vsReport
     end
     object ExpBar: TProgressBar
       Left = 1
       Height = 16
-      Top = 242
+      Top = 309
       Width = 198
       Align = alTop
       ParentShowHint = False
@@ -212,15 +214,15 @@ object MainForm: TMainForm
     end
     object Spells: TListView
       Left = 1
-      Height = 206
-      Top = 271
+      Height = 139
+      Top = 338
       Width = 198
       Align = alClient
       Columns = <      
         item
           AutoSize = True
           Caption = 'Spell'
-          Width = 89
+          Width = 104
         end      
         item
           Caption = 'Level'
@@ -231,6 +233,7 @@ object MainForm: TMainForm
       MultiSelect = True
       ReadOnly = True
       RowSelect = True
+      ScrollBars = ssAutoBoth
       TabOrder = 3
       ViewStyle = vsReport
     end
@@ -288,6 +291,7 @@ object MainForm: TMainForm
       Top = 14
       Width = 198
       Align = alTop
+      Checkboxes = True
       Columns = <      
         item
           AutoSize = True
@@ -300,10 +304,11 @@ object MainForm: TMainForm
       MultiSelect = True
       ReadOnly = True
       RowSelect = True
+      ScrollBars = ssAutoBoth
       ShowColumnHeaders = False
-      StateImages = ImageList1
       TabOrder = 1
       ViewStyle = vsReport
+      OnItemChecked = PlotsItemChecked
     end
     object PlotBar: TProgressBar
       Left = 1
@@ -323,6 +328,7 @@ object MainForm: TMainForm
       Top = 190
       Width = 198
       Align = alClient
+      Checkboxes = True
       Columns = <      
         item
           AutoSize = True
@@ -335,10 +341,11 @@ object MainForm: TMainForm
       MultiSelect = True
       ReadOnly = True
       RowSelect = True
+      ScrollBars = ssAutoBoth
       ShowColumnHeaders = False
-      StateImages = ImageList1
       TabOrder = 3
       ViewStyle = vsReport
+      OnItemChecked = QuestsItemChecked
     end
   end
   object Panel2: TPanel
@@ -353,7 +360,7 @@ object MainForm: TMainForm
     object InventoryLabelAlsoGameStyle: TLabel
       Left = 1
       Height = 13
-      Top = 176
+      Top = 207
       Width = 280
       Align = alTop
       Caption = 'Inventory'
@@ -390,8 +397,8 @@ object MainForm: TMainForm
     end
     object Inventory: TListView
       Left = 1
-      Height = 259
-      Top = 189
+      Height = 228
+      Top = 220
       Width = 280
       Align = alClient
       Columns = <      
@@ -410,6 +417,7 @@ object MainForm: TMainForm
       MultiSelect = True
       ReadOnly = True
       RowSelect = True
+      ScrollBars = ssAutoBoth
       TabOrder = 0
       ViewStyle = vsReport
     end
@@ -427,19 +435,19 @@ object MainForm: TMainForm
     end
     object Equips: TListView
       Left = 1
-      Height = 162
+      Height = 193
       Top = 14
       Width = 280
       Align = alTop
       Columns = <      
         item
           Caption = 'Position'
-          Width = 60
+          Width = 72
         end      
         item
           AutoSize = True
           Caption = 'Equipped'
-          Width = 171
+          Width = 174
         end>
       ColumnClick = False
       HideSelection = False
@@ -458,6 +466,7 @@ object MainForm: TMainForm
       MultiSelect = True
       ReadOnly = True
       RowSelect = True
+      ScrollBars = ssAutoBoth
       ShowColumnHeaders = False
       TabOrder = 2
       ViewStyle = vsReport
@@ -508,7 +517,6 @@ object MainForm: TMainForm
     Top = 478
     Width = 682
     Align = alBottom
-    Caption = 'Panel4'
     ClientHeight = 35
     ClientWidth = 682
     TabOrder = 3

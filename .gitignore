@@ -4,3 +4,6 @@ lib/*
 .DS_Store
 .vscode/*
 pq
+
+*.bak
+*.pq3

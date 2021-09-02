@@ -15,6 +15,9 @@ const
   kFileExt = '.pq3';
 
 type
+
+  { TMainForm }
+
   TMainForm = class(TForm)
     Panel1: TPanel;
     Label1: TLabel;
@@ -48,6 +51,8 @@ type
     fQuest: TLabel;
     fQueue: TListBox;
     procedure GoButtonClick(Sender: TObject);
+    procedure PlotsItemChecked(Sender: TObject; Item: TListItem);
+    procedure QuestsItemChecked(Sender: TObject; Item: TListItem);
     procedure Timer1Timer(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -207,7 +212,7 @@ end;
 function Indefinite(s: String; qty: Integer): String;
 begin
   if qty = 1 then begin
-    if Pos(s[1], 'AEIOU�aeiou�') > 0
+    if Pos(s[1], 'AEIOUÜaeiouü') > 0
     then Result := 'an ' + s
     else Result := 'a ' + s;
   end else begin
@@ -580,11 +585,25 @@ begin
   PlotBar.Max := 26;
   with Plots.Items.Add do begin
     Caption := 'Prologue';
-    StateIndex := 0;
+    Checked := False;
   end;
 
   StartTimer;
   SaveGame;
+end;
+
+procedure TMainForm.QuestsItemChecked(Sender: TObject; Item: TListItem);
+begin  
+  Quests.OnItemChecked := nil;
+  Item.Checked := not Item.Checked;
+  Quests.OnItemChecked := PlotsItemChecked;
+end;
+
+procedure TMainForm.PlotsItemChecked(Sender: TObject; Item: TListItem);
+begin
+  Plots.OnItemChecked := nil;
+  Item.Checked := not Item.Checked;
+  Plots.OnItemChecked := PlotsItemChecked;
 end;
 
 procedure TMainForm.WinSpell;
@@ -707,7 +726,7 @@ begin
       {$IFDEF LOGGING}
       Log('Quest completed: ' + Items[Items.Count-1].Caption);
       {$ENDIF}
-      Items[Items.Count-1].StateIndex := 1;
+      Items[Items.Count-1].Checked := TRUE;
       case Random(4) of
         0: WinSpell;
         1: WinEquip;
@@ -766,7 +785,7 @@ begin
       {$IFDEF LOGGING}
       Log('Commencing quest: ' + Caption);
       {$ENDIF}
-      StateIndex := 0;
+      Checked := False;
       MakeVisible(false);
     end;
     Width := Width - 1; // trigger a column resize
@@ -832,13 +851,13 @@ procedure TMainForm.CompleteAct;
 begin
   PlotBar.Position := 0;
   with Plots do begin
-    Items[Items.Count-1].StateIndex := 1;
+    Items[Items.Count-1].Checked := True;
     PlotBar.Max := 60 * 60 * (1 + 5 * Items.Count); // 1 hr + 5/act
     PlotBar.Hint := 'Cutscene omitted';
     with Items.Add do begin
       Caption := 'Act ' + IntToRoman(Items.Count-1);
       MakeVisible(false);
-      StateIndex := 0;
+      Checked := False;
       Width := Width-1;
     end;
   end;
