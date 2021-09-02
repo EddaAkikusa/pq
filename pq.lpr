@@ -11,8 +11,8 @@ uses
 {$R *.res}
 
 begin
+  Application.Scaled:=True;
   Application.Initialize;
-  Application.Title := 'Progress Quest';
   Application.CreateForm(TMainForm, MainForm);
   Application.CreateForm(TK, K);
   Application.CreateForm(TFrontForm, FrontForm);

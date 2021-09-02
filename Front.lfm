@@ -1,7 +1,7 @@
 object FrontForm: TFrontForm
-  Left = 511
+  Left = 562
   Height = 255
-  Top = 312
+  Top = 277
   Width = 452
   AlphaBlendValue = 100
   BorderIcons = []
@@ -88,7 +88,7 @@ object FrontForm: TFrontForm
   }
   OnCreate = FormCreate
   Position = poScreenCenter
-  LCLVersion = '2.2.0.1'
+  LCLVersion = '2.2.0.2'
   object Panel1: TPanel
     Left = 2
     Height = 251

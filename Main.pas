@@ -44,7 +44,6 @@ type
     Timer1: TTimer;
     EncumBar: TProgressBar;
     Label7: TLabel;
-    ImageList1: TImageList;
     Label8: TLabel;
     vars: TPanel;
     fTask: TLabel;
@@ -1273,11 +1272,12 @@ begin
     end;
   end;
 
+
   //ClearAllSelections;
   m := TMemoryStream.Create;
   for i := 0 to ComponentCount-1 do
     m.WriteComponent(Components[i]);
-
+  m.WriteComponent(MainForm);
   m.Seek(0, soFromBeginning);
   //ZCompressStream(m, f);
   f.Write(m, m.Size);
@@ -1354,20 +1354,6 @@ begin
   if (ssCtrl in Shift) and (Key = ord('A')) then begin
     ShowMessage(CharSheet);
   end;
-end;
-
-function LFSR(pt: String; salt: Integer): Integer;
-var
-  k: Integer;
-begin
-  Result := salt;
-  for k := 1 to Length(pt) do
-    Result := Ord(pt[k])
-          xor (Result shl 1)
-          xor (1 and ((Result shr 31) xor (Result shr 5)));
-  for k := 1 to 10 do
-    Result := (Result shl 1)
-          xor (1 and ((Result shr 31) xor (Result shr 5)));
 end;
 
 initialization
