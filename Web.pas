@@ -51,7 +51,7 @@ begin
   Result := '';
   conntype := INTERNET_OPEN_TYPE_DIRECT;
   if proxyok then conntype := INTERNET_OPEN_TYPE_PRECONFIG;
-  NetHandle := InternetOpen('PQ6.2', conntype, nil, nil, 0);
+  NetHandle := InternetOpen('PQ6.4', conntype, nil, nil, 0);
   if Assigned(NetHandle) then
   begin                                 {
     if Len(username + password) > 0 then
