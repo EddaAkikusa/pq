@@ -3,7 +3,7 @@ unit Main;
 
 {$UNDEF CHEATS}
 {$UNDEF LOGGING}
-{$DEFINE TURBO}
+{$UNDEF TURBO}
 
 interface
 
@@ -976,8 +976,14 @@ begin
   end;
 end;
 
+// I V  X  L   C   D    M    G     T     P      E
+// 1 5 10 50 100 500 1000 5000 10000 50000 100000
 function IntToRoman(n: Integer): String;
 begin
+  while Rome(n, 10000, Result, 'T') do ;
+  Rome(n, 9000, Result, 'MT');
+  Rome(n, 5000, Result, 'G');
+  Rome(n, 4000, Result, 'MG');
   while Rome(n, 1000, Result, 'M') do ;
   Rome(n, 900, Result, 'CM');
   Rome(n, 500, Result, 'D');
@@ -996,6 +1002,10 @@ end;
 function RomanToInt(n: String): Integer;
 begin
   Result := 0;
+  while UnRome(n, 10000, Result, 'T') do ;
+  UnRome(n, 9000, Result, 'MT');
+  UnRome(n, 5000, Result, 'G');
+  UnRome(n, 4000, Result, 'MG');
   while UnRome(n, 1000, Result, 'M') do ;
   UnRome(n, 900, Result, 'CM');
   UnRome(n, 500, Result, 'D');
@@ -1624,6 +1634,9 @@ const
   flat = 1;
 begin
   {$IFDEF TURBO}
+  Exit;  // For testing multiplayer saves without hitting the server
+  {$ENDIF}
+  {$IFDEF CHEATS}
   Exit;  // For testing multiplayer saves without hitting the server
   {$ENDIF}
   if FExportSheets then
