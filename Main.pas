@@ -1279,7 +1279,7 @@ begin
   FMinToTray := true;
   FExportSheets := false;
 
-  MakeFileAssociations;
+  if Win32MajorVersion < 6 then MakeFileAssociations;
 end;
 
 procedure TMainForm.SpeedButton1Click(Sender: TObject);
