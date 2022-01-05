@@ -1,7 +1,7 @@
 unit Main;
 { copyright (c)2002 Eric Fredricksen all rights reserved }
 
-{$DEFINE CHEATS}
+{$UNDEF CHEATS}
 {$UNDEF LOGGING}
 
 interface
@@ -728,8 +728,8 @@ end;
 
 function LevelUpTime(level: Integer): Integer;  // seconds
 begin
-  // 20 minutes per level
-  Result := 20 * level * 60;
+ // ~20 minutes for level 1, eventually dominated by exponential
+ Result := Round((20.0 + IntPower(1.15,level)) * 60.0);
 end;
 
 procedure TMainForm.GoButtonClick(Sender: TObject);
