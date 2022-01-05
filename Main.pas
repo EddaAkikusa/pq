@@ -1,8 +1,9 @@
 unit Main;
-{ copyright (c)2002 Eric Fredricksen all rights reserved }
+{ copyright (c)2022 Eric Fredricksen all rights reserved }
 
 {$DEFINE CHEATS}
 {$UNDEF LOGGING}
+{$DEFINE TURBO}
 
 interface
 
@@ -12,14 +13,16 @@ uses
 
 const
   // revs:
-  // 5: pq 6.3
+  // 7: pq 6.4
+  // 6: pq-web
+  // 5: pq 6.3 (no official release)
   // 4: pq 6.2
   // 3: pq 6.1
   // 2: pq 6.0
   // 1: pq 6.0, some early release I guess; don't remember
-  RevString = '&rev=5';
+  RevString = '&rev=7';
   wmIconTray = WM_USER + Ord('t');
-  kFileExt = '.pq3';
+  kFileExt = '.pq';
 
 type
   TMainForm = class(TForm)
@@ -719,11 +722,13 @@ begin
     if SubItems.Count < 1
     then SubItems.Add(value)
     else SubItems[0] := value;
+
+    Selected := true;
+    MakeVisible(false);
   end;
   //list.MultiSelect := true;
   //list.RowSelect := true;
   //list.HideSelection := false;
-  list.Items[pos].Selected := true;
 end;
 
 function LevelUpTime(level: Integer): Integer;  // seconds
@@ -835,10 +840,13 @@ begin
     t := 0;
     for i := 0 to 5 do Inc(t,Square(GetI(Stats,i)));
     t := Random(t);
-    i := -1;
-    while t >= 0 do begin
-      Inc(i);
-      Dec(t,Square(GetI(Stats,i)));
+    if t < 0 then i := Random(Stats.Items.Count)
+    else begin
+      i := -1;
+      while t >= 0 do begin
+        Inc(i);
+        Dec(t,Square(GetI(Stats,i)));
+      end;
     end;
   end;
   Add(Stats, Stats.Items[i].Caption, 1);
@@ -863,7 +871,9 @@ end;
 
 procedure TMainForm.WinItem;
 begin
-  Add(Inventory, SpecialItem, 1);
+  if max(250, Random(999)) < Inventory.Items.Count
+  then Add(Inventory, Inventory.Items[Random(Inventory.Items.Count)].Caption, 1)
+  else Add(Inventory, SpecialItem, 1);
 end;
 
 procedure TMainForm.CompleteQuest;
@@ -1100,7 +1110,7 @@ begin
       else WrLn( '  ' + Indefinite(Items[i].Caption, GetI(Inventory,i)));
   WrLn;
   WrLn( '-- ' + DateTimeToStr(Now));
-  WrLn( '-- Progress Quest 6.2 - http://progressquest.com/');
+  WrLn( '-- Progress Quest 6.4 - http://progressquest.com/');
   Result := f;
 end;
 
@@ -1226,6 +1236,9 @@ var
 begin
   gain := Pos('kill|',fTask.Caption) = 1;
   with TaskBar do begin
+    {$IFDEF TURBO}
+    Position := Max;
+    {$ENDIF}
     if Position >= Max then begin
       ClearAllSelections;
 
@@ -1337,7 +1350,7 @@ end;
 
 const
   KUsage =
-    'Usage: pq [flags] [game.pq3]'#10 +
+    'Usage: pq [flags] [game.pq]'#10 +
     #10 +
     'Flags:'#10 +
     '  -no-backup     Do not make a backup file when saving the game'#10 +
@@ -1610,6 +1623,9 @@ var
 const
   flat = 1;
 begin
+  {$IFDEF TURBO}
+  Exit;  // For testing multiplayer saves without hitting the server
+  {$ENDIF}
   if FExportSheets then
     ExportCharSheet;
   if GetPasskey = 0 then Exit; // not a online game!
