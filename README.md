@@ -32,6 +32,9 @@ Subversion revsion numbers vs. versions:
 * r317 v6.1
 * r313 v6.0
 
+(But these revision numbers aren't immediately accessible, if at all,
+since moving to git.)
+
 SEE ALSO
 --------
 

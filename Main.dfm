@@ -1,6 +1,6 @@
 object MainForm: TMainForm
-  Left = 330
-  Top = 154
+  Left = 216
+  Top = 134
   Width = 682
   Height = 513
   HorzScrollBar.Visible = False
@@ -96,7 +96,7 @@ object MainForm: TMainForm
     Left = 0
     Top = 0
     Width = 200
-    Height = 451
+    Height = 444
     Align = alLeft
     TabOrder = 0
     object Label1: TLabel
@@ -214,7 +214,7 @@ object MainForm: TMainForm
       Left = 1
       Top = 271
       Width = 198
-      Height = 147
+      Height = 140
       Align = alClient
       Columns = <
         item
@@ -236,7 +236,7 @@ object MainForm: TMainForm
     end
     object Cheats: TPanel
       Left = 1
-      Top = 418
+      Top = 411
       Width = 198
       Height = 32
       Align = alBottom
@@ -293,7 +293,7 @@ object MainForm: TMainForm
     Left = 474
     Top = 0
     Width = 200
-    Height = 451
+    Height = 444
     Align = alRight
     TabOrder = 1
     object Label3: TLabel
@@ -326,7 +326,7 @@ object MainForm: TMainForm
     end
     object QuestBar: TProgressBar
       Left = 1
-      Top = 434
+      Top = 427
       Width = 198
       Height = 16
       Align = alBottom
@@ -377,7 +377,7 @@ object MainForm: TMainForm
       Left = 1
       Top = 190
       Width = 198
-      Height = 244
+      Height = 237
       Align = alClient
       Columns = <
         item
@@ -401,7 +401,7 @@ object MainForm: TMainForm
     Left = 200
     Top = 0
     Width = 274
-    Height = 451
+    Height = 444
     Align = alClient
     TabOrder = 2
     object InventoryLabelAlsoGameStyle: TLabel
@@ -420,7 +420,7 @@ object MainForm: TMainForm
     end
     object Label7: TLabel
       Left = 1
-      Top = 421
+      Top = 414
       Width = 272
       Height = 13
       Align = alBottom
@@ -450,7 +450,7 @@ object MainForm: TMainForm
       Left = 1
       Top = 189
       Width = 272
-      Height = 232
+      Height = 225
       Align = alClient
       Columns = <
         item
@@ -473,7 +473,7 @@ object MainForm: TMainForm
     end
     object EncumBar: TProgressBar
       Left = 1
-      Top = 434
+      Top = 427
       Width = 272
       Height = 16
       Align = alBottom
@@ -562,7 +562,7 @@ object MainForm: TMainForm
   end
   object Panel4: TPanel
     Left = 0
-    Top = 451
+    Top = 444
     Width = 674
     Height = 35
     Align = alBottom
