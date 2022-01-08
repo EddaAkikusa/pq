@@ -1,4 +1,4 @@
-ProgressQuest v6.3
+ProgressQuest v6.4
 ==================
 
 BUILDING
@@ -15,7 +15,7 @@ VCS NOTES
 
 Converted to Mercurial on 1/12/2010 & sent to
 http://bitbucket.org/grumdrig/pq/ ; development will continue from
-there. If at all. Source opened 5/20/11. The world ends tomorrow anyway.
+there. If at all. Source opened 5/20/11. The world ends tomorrow anyway.[^1]
 
 This project represents an ex post facto rendering of pq6 in its
 various versions in version control, so that changes will be trackable
@@ -35,8 +35,15 @@ Subversion revsion numbers vs. versions:
 (But these revision numbers aren't immediately accessible, if at all,
 since moving to git.)
 
+
 SEE ALSO
 --------
 
 The in-browser edition: this project, ported to JavaScript/HTML
 https://bitbucket.org/grumdrig/pq-web
+
+
+[^1]: Although I don't remember it here in 2022, this is presumably a reference
+	  to Christian radio host Harold Camping's prediction that the world would
+	  end on 5/21/11 at 6pm. It did not, to the dismay of himself and his
+      followers (only).
