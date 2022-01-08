@@ -1,6 +1,6 @@
 object MainForm: TMainForm
-  Left = 216
-  Top = 134
+  Left = 238
+  Top = 148
   Width = 682
   Height = 513
   HorzScrollBar.Visible = False

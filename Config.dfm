@@ -1,6 +1,6 @@
 object K: TK
-  Left = 350
-  Top = 121
+  Left = 202
+  Top = 129
   Width = 800
   Height = 567
   Caption = 'K'
@@ -926,7 +926,9 @@ object K: TK
       'Princess'
       'Chief'
       'Boss'
-      'Archbishop')
+      'Archbishop'
+      'Baron'
+      'Comptroller')
     TabOrder = 17
     WordWrap = False
   end

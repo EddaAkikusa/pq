@@ -13,6 +13,7 @@ uses
 
 const
   // revs:
+  // 8: pq 6.4.1
   // 7: pq 6.4
   // 6: pq-web
   // 5: pq 6.3 (no official release)
@@ -20,7 +21,7 @@ const
   // 3: pq 6.1
   // 2: pq 6.0
   // 1: pq 6.0, some early release I guess; don't remember
-  RevString = '&rev=7';
+  RevString = '&rev=8';
   wmIconTray = WM_USER + Ord('t');
   kFileExt = '.pq';
 
@@ -482,15 +483,15 @@ begin
       end;
   2: begin
     nemesis := ImpressiveGuy;
-    Q('task|2|Oh sweet relief! You''ve reached the protection of the good ' + nemesis);
+    Q('task|2|Oh sweet relief! You''ve reached the kind protection of ' + nemesis);
     Q('task|3|There is rejoicing, and an unnerving encouter with ' + nemesis + ' in private');
     Q('task|2|You forget your ' + BoringItem + ' and go back to get it');
     Q('task|2|What''s this!? You overhear something shocking!');
     Q('task|2|Could ' + nemesis + ' be a dirty double-dealer?');
-    Q('task|3|Who can possibly be trusted with this news!? ... Oh yes, of course');
+    Q('task|3|Who can possibly be trusted with this news!? -- Oh yes, of course');
       end;
   end;
-  Q('plot|1|Loading');
+  Q('plot|2|Loading');
 end;
 
 
@@ -514,8 +515,8 @@ function TMainForm.ImpressiveGuy: String;
 begin
   Result := Pick(K.ImpressiveTitles.Lines);
   case Random(2) of
-  0: Result := Result + ' of the ' + Pick(K.Races.Lines);
-  1: Result := Result + ' of ' + GenerateName;
+  0: Result := 'the ' + Result + ' of the ' + Plural(Split(Pick(K.Races.Lines), 0));
+  1: Result := Result + ' ' + GenerateName + ' of ' + GenerateName;
   end;
 end;
 
@@ -744,16 +745,16 @@ begin
     Max := LevelUpTime(1);
   end;
 
-  fTask.Caption := '';
+  fTask.Caption := 'load';
   fQuest.Caption := '';
   fQueue.Items.Clear;
 
-  Task('Loading.',2000); // that dot is spotted for later...
+  Task('Loading',2000);
   Q('task|10|Experiencing an enigmatic and foreboding night vision');
   Q('task|6|Much is revealed about that wise old bastard you''d underestimated');
   Q('task|6|A shocking series of events leaves you alone and bewildered, but resolute');
   Q('task|4|Drawing upon an unexpected reserve of determination, you set out on a long and dangerous journey');
-  Q('task|2|Loading');
+  Q('plot|2|Loading');
 
   PlotBar.Max := 26;
   with Plots.Items.Add do begin
@@ -1034,9 +1035,9 @@ begin
       StateIndex := 0;
       Width := Width-1;
     end;
+    if Items.Count > 2 then WinItem;
+    if Items.Count > 3 then WinEquip;
   end;
-  WinItem;
-  WinEquip;
   SaveGame;
   Brag('a');
 end;
@@ -1252,8 +1253,6 @@ begin
     if Position >= Max then begin
       ClearAllSelections;
 
-      if Kill.SimpleText = 'Loading....' then Max := 0;
-
       // gain XP / level up
       if gain then with ExpBar do if Position >= Max
       then LevelUp
@@ -1269,9 +1268,10 @@ begin
       end;
 
       // advance plot
-      if gain then with PlotBar do if Position >= Max
+      if (PlotBar.Position >= PlotBar.Max) and gain
       then InterplotCinematic
-      else Position := Position + TaskBar.Max div 1000;
+      else if fTask.Caption <> 'load'
+      then PlotBar.Position := Math.Min(PlotBar.Position + TaskBar.Max div 1000, PlotBar.Max);
 
       //Time.Caption := FormatDateTime('h:mm:ss',PlotBar.Position / (24.0 * 60 * 60));
       PlotBar.Hint := RoughTime(PlotBar.Max-PlotBar.Position) + ' remaining';
