@@ -184,15 +184,15 @@ begin
         else url := 'http://www.progressquest.com/create.php?';
         // url := StringReplace(url, '.com/', '.com/dev/', []);
         if (GetAccount <> '') or (GetPassword <> '') then
-          url := StuffString(url, 8, 0, GetAccount+':'+GetPassword+'@');
+          url := StuffString(url, 8, 0, UrlEncode(GetAccount)+':'+UrlEncode(GetPassword)+'@');
         args := 'cmd=create' +
                 '&name=' + UrlEncode(Name.Text) +
                 '&realm=' + UrlEncode(MainForm.GetHostName) +
                 RevString;
         ParseSoldResponse(DownloadString(url + args));
       except
-        on EWebError do begin
-          ShowMessage('Error connecting to server');
+        on E: EWebError do begin
+          ShowMessage('Error connecting to server')//: ' + StringReplace(E.Message, '&', '&&', [rfReplaceAll]));
         end;
       end;
     finally

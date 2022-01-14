@@ -1680,7 +1680,7 @@ end;
 function TMainForm.AuthenticateUrl(url: String): String;
 begin
   if (GetLogin <> '') or (GetPassword <> '') then
-    Result := StuffString(url, 8, 0, GetLogin+':'+GetPassword+'@')
+    Result := StuffString(url, 8, 0, UrlEncode(GetLogin)+':'+UrlEncode(GetPassword)+'@')
   else
     Result := url;
 end;
